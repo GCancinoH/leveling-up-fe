@@ -25,13 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     // Firebase
     provideFirebaseApp(() => initializeApp({
-      apiKey: "AIzaSyATst4fG_kLMwtCr8tNhnF7X8aJ040rrwg",
-      authDomain: "leveling-up-2e8c2.firebaseapp.com",
-      projectId: "leveling-up-2e8c2",
-      storageBucket: "leveling-up-2e8c2.firebasestorage.app",
-      messagingSenderId: "737171817179",
-      appId: "1:737171817179:web:7b3160829d1bfcfcca42fe",
-      measurementId: "G-RF9PJ9G9DS"
+      
       
     })),
     provideAuth(() => getAuth()),
