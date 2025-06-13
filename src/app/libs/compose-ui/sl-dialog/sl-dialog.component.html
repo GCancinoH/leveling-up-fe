@@ -1,0 +1,44 @@
+<div 
+    class="sl-dialog-overlay"
+    [class.sl-dialog-visible]="visible()"
+    (click)="onOverlayClick($event)"
+    [style.z-index]="zIndex()"
+>
+    <div 
+        #dialogContainer
+        class="sl-dialog-container" 
+        [class.sl-dialog-actions]="showActions()"
+        [@fadeIn]="animationState()" 
+        [style.width]="width()"
+        [style.height]="height()"
+        [style.max-width]="'95vw'"
+        [style.max-height]="'95vh'"
+        [ngClass]="panelClass()"
+    >
+        @if(!!title()) {
+            <div class="sl-dialog-header">
+                <h2 class="sl-dialog-title">{{title()}}</h2>
+                <button class="sl-dialog-close" (click)="close()" aria-label="Close dialog">×</button>
+            </div>
+        }
+        
+        <div class="sl-dialog-content">
+            <ng-content></ng-content>
+        </div>
+        
+        @if (showActions()) {
+            <div class="sl-dialog-actions">
+                <button 
+                    class="sl-dialog-button sl-cancel-button"
+                    (click)="cancel()">
+                    {{cancelText()}}
+                </button>
+                <button 
+                    class="sl-dialog-button sl-confirm-button"
+                    (click)="confirm()">
+                    {{confirmText()}}
+                </button>
+          </div>
+        }
+    </div>
+</div>

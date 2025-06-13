@@ -1,0 +1,105 @@
+<div class="signup-container">
+    @switch (currentStep()) {
+        @case (0) {
+            @defer(when currentStep() == 0) {
+                <welcome-screen (timerGone)="welcomeEmittedValue($event)"></welcome-screen>
+            }
+        }
+        @case (1) {
+            @defer (when currentStep() == 1) {
+                <counter-screen (accepted)="countDownEmitted($event)"/>
+            }
+        }
+        @case (2) {
+            @defer (when currentStep() == 2) {
+                <account-screen (accountData)="accountEmittedValue($event)"/>
+            }
+        }
+        @case (3) {
+            @defer (when currentStep() == 3) {
+                <personal-information-screen (personalData)="personalDataEmittedValue($event)" />
+            }
+        }
+        @case (4) {
+            @defer (when currentStep() == 4) {
+                <physical-attributes-screen (physicalData)="physicalDataEmittedValue($event)" />
+            }
+        }
+        @case (5) {
+            @defer (when currentStep() == 5) {
+                <body-composition-screen (bodyCompData)="bodyCompositionEmittedValue($event)" />
+            }
+        }
+        @case (6) {
+            @defer (when currentStep() == 6) {
+                <body-measurements-screen (measurementsSaved)="bodyMeasurementsEmittedValue($event)"/>
+            }
+        }
+        @case (7) {
+            @defer (when currentStep() == 7) {
+                <improvements-screen (improvementData)="improvementsEmittedValue($event)" />
+            }
+        }
+        @case (8) {
+            @defer (when currentStep() == 8) {
+                <photos-screen (imageData)="photosEmittedValue($event)" />
+            }
+        }
+        @case (9) {
+            @defer (when currentStep() == 9) {
+                <finish-screen (finishData)="signupData()" />
+            }
+        }
+    }    
+</div>
+
+<!--<div class="sign-up-container">
+    <div class="sign-up-card">
+        <div class="sign-up-header">
+            <h1 class="title">LEVELING UP</h1>
+            <p class="subtitle">BECOME STRONGER</p>
+            <div class="divider"></div>
+        </div>
+  
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-up-form">
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email" type="email" required>
+                @if(signInForm.get('email')?.invalid) {
+                    <mat-error>{{ getEmailErrorMessage() }}</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Password</mat-label>
+                <input matInput formControlName="password" [type]="hidePassword() ? 'password' : 'text'" required>
+                @if(signInForm.get('password')?.invalid) {
+                    <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+                }
+            </mat-form-field>
+            <button mat-flat-button type="submit" class="sign-up-button" [disabled]="isLoading()">
+                @if(!isLoading()) {
+                    <span class="signup-btn-text">SIGN UP</span>
+                } @else {
+                    <mat-spinner diameter="24"></mat-spinner>
+                }
+            </button>
+            <div class="or-divider">
+                <div class="line"></div>
+                <span>OR</span>
+                <div class="line"></div>
+            </div>
+
+            <button mat-stroked-button type="button" class="google-button" (click)="signInWithGoogle()" [disabled]="isLoading">
+                <span>CONTINUE WITH GOOGLE</span>
+            </button>
+
+            <div class="sign-up-link">
+                <span>Are you a player already?</span>
+                <a (click)="navigateToSignIn()">SIGN IN</a>
+            </div>
+        </form>
+  
+        <div class="decoration-bottom"></div>
+    </div>
+</div>-->

@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:host {
+    font-family: "Share Tech Mono", monospace;
+    color: white;
+}
+
+.glass-card {
+    background: rgba(48, 63, 159, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.glow-button {
+    background-color: #5E35B1;
+    box-shadow: 0 0 10px #5E35B1aa;
+    color: white;
+    border-radius: 8px;
+    &:hover {
+      background-color: #7E57C2;
+      box-shadow: 0 0 15px #9575CD;
+    }
+}
+
+.xp-bar {
+    background: linear-gradient(270deg, #64B5F6, #303F9F);
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+    border-radius: 8px;
+    height: 12px;
+}
+  
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.levelingUp-font {
+    font-family: "Share Tech Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}

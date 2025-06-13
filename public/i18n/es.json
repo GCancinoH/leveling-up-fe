@@ -1,0 +1,20 @@
+{
+    "sign-in": {
+        "header": {
+            "subtitle": "BECOME STRONGER"
+        },
+        "form": {
+            "email": "Email",
+            "password": "Password",
+            "button": "SIGN IN"
+        },
+        "google": {
+            "divider": "OR",
+            "sign-in-google": "CONTINUE WITH GOOGLE"
+        },
+        "create-account": {
+            "description": "Want to be a player?",
+            "action": "SIGN UP NOW"
+        }
+    }
+}

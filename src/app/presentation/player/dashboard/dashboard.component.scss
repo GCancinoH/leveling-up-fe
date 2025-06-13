@@ -1,0 +1,150 @@
+// Solo Leveling theme colors
+$solo-leveling-purple: #6a11cb;
+$solo-leveling-blue: #2575fc;
+$solo-leveling-dark-bg: #121212;
+$solo-leveling-card-bg: #1a1a1a;
+$solo-leveling-input-bg: #242424;
+$solo-leveling-gray: #444444;
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: $solo-leveling-dark-bg;
+  font-family: "Share Tech Mono", monospace;
+  color: white;
+}
+
+.mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: linear-gradient(90deg, $solo-leveling-purple 0%, $solo-leveling-blue 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+
+    .toolbar-title {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 26px;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
+
+.spacer { flex: 1 1 auto; }
+
+.white-icon { color: white; }
+
+.menu-title {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.menu-item {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.mat-sidenav-container {
+  height: 100vh;
+  background-color: $solo-leveling-dark-bg;
+}
+
+.mat-sidenav {
+  width: 250px;
+  background-color: $solo-leveling-card-bg;
+  padding: 20px;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+  border-right: 1px solid $solo-leveling-gray;
+
+  .sidenav-title {
+    font-family: "Share Tech Mono", monospace;
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-left: 4px solid transparent;
+
+    &:hover {
+      color: $solo-leveling-purple;
+      border-left: 4px solid $solo-leveling-purple;
+    }
+  }
+}
+
+.dashboard-content {
+  flex: 1;
+  margin-top: 64px;
+  padding: 30px;
+  background-color: $solo-leveling-dark-bg;
+  overflow-y: auto;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      repeating-linear-gradient(60deg, $solo-leveling-gray 0, $solo-leveling-gray 1px, transparent 1px, transparent 30px),
+      repeating-linear-gradient(-60deg, $solo-leveling-gray 0, $solo-leveling-gray 1px, transparent 1px, transparent 30px);
+    background-size: 30px 50px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .fab-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    background: linear-gradient(135deg, $solo-leveling-purple, $solo-leveling-blue);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      background: linear-gradient(135deg, lighten($solo-leveling-purple, 5%), lighten($solo-leveling-blue, 5%));
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mat-sidenav {
+    width: 200px;
+  }
+
+  .mat-toolbar {
+    padding: 0 10px;
+  }
+}

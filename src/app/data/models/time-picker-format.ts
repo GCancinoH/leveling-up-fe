@@ -1,0 +1,1 @@
+export type TimePickerFormat = '12hrs' | '24hrs';

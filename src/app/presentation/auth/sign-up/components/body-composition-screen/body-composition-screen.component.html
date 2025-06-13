@@ -1,0 +1,48 @@
+<mat-card class="body-card" @fadeIn>
+    <mat-card-header>
+        <mat-card-title>Body Composition</mat-card-title>
+        <mat-card-subtitle>
+          Body composition metrics help track fitness progress and set realistic goals. Also, other health metrics can be calculated with your muscle mass, body fat & visceral fat.
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <spacer [position]="'top'" [size]="'10px'" />  
+        <form [formGroup]="bodyCompositionForm" class="body-form">
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Fat Percentage (in %)</mat-label>
+                <input matInput formControlName="bodyFat" type="number" autoFocusNext required>
+                @if(bodyCompositionForm.get('age')?.invalid) {
+                    <mat-error></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Muscle Mass (in %)</mat-label>
+                <input matInput formControlName="muscleMass" type="number" autoFocusNext required>
+                @if(bodyCompositionForm.get('age')?.invalid) {
+                    <mat-error></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Visceral Fat</mat-label>
+                <input matInput formControlName="visceralFat" type="number" autoFocusNext required>
+                @if(bodyCompositionForm.get('age')?.invalid) {
+                    <mat-error></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Body Age</mat-label>
+                <input matInput formControlName="bodyAge" type="number" autoFocusNext required>
+                @if(bodyCompositionForm.get('age')?.invalid) {
+                    <mat-error></mat-error>
+                }
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    @if (bodyCompositionForm.valid) {
+        <mat-card-actions class="body-footer" @fadeIn>
+            <button mat-icon-button (click)="emitValue()">
+                <mat-icon class="icon">arrow_forward</mat-icon>
+            </button>
+        </mat-card-actions>
+    }
+</mat-card>

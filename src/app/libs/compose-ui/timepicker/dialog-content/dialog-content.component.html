@@ -1,0 +1,33 @@
+<div class="time-picker">
+    <div class="selected-time">
+        <div class="time-display">
+            <span class="hour" [class.active]="view() === 'hour'" (click)="view.set('hour')">
+                {{ displayHour().toString().padStart(2, '0') }}
+            </span>
+            <span class="separator">:</span>
+            <span class="minute" [class.active]="view() === 'minute'" (click)="view.set('minute')">
+                {{ selectedMinute().toString().padStart(2, '0') }}
+            </span>
+        
+            @if (format() === '12hrs') {
+                <span class="ampm-toggle" (click)="toggleAmPm()">
+                    {{ amPm() }}
+                </span>
+            }
+        </div>
+    </div>
+    
+    <div class="clock-wrapper">
+        <clock-face
+            [format]="format()"
+            [view]="view()"
+            [selectedHour]="selectedHour()"
+            [selectedMinute]="selectedMinute()"
+            (timeChanged)="onTimeChanged($event)" />
+    </div>
+    
+    <div class="time-picker-actions">
+        <button type="button" class="cancel-btn" (click)="close()">Cancel</button>
+        <button type="button" class="confirm-btn" (click)="confirm()">OK</button>
+    </div>
+</div>  

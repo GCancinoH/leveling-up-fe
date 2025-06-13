@@ -1,0 +1,48 @@
+{
+    "sign-in": {
+        "header": {
+            "subtitle": "BECOME STRONGER"
+        },
+        "form": {
+            "email": {
+                "label": "Email",
+                "placeholder": "Enter your email"
+            },
+            "password": {
+                "label": "Password"
+            },
+            "button": "SIGN IN"
+        },
+        "google": {
+            "divider": "OR",
+            "sign-btn": "CONTINUE WITH GOOGLE"
+        },
+        "create-account": {
+            "description": "Want to be a player?",
+            "action": "SIGN UP NOW"
+        }
+    },
+    "dashboard": {
+        "fab-menu": {
+            "title": "Logs",
+            "body-composition": "Body Composition",
+            "blood-pressure": "Blood Pressure",
+            "sleep": "Sleep"
+        },
+        "bottom-sheets": {
+            "body-composition": {
+                "title": "Body Composition",
+                "subtitle": "on ",
+                "form": {
+                    "weight": "Weight (in kg)",
+                    "bodyFat": "Fat Mass (%)",
+                    "muscleMass": "Muscle Mass (%)",
+                    "visceralFat": "Visceral Fat",
+                    "bodyAge": "Body Age",
+                    "button": "Save Data"
+                }
+            }
+        }
+        
+    }
+}

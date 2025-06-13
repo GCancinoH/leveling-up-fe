@@ -1,0 +1,59 @@
+<mat-card class="personal-card" @fadeIn>
+    <mat-card-header>
+      <mat-card-title>Personal Information</mat-card-title>
+      <mat-card-subtitle>
+        Providing accurate personal details help us tailor thy experience and ensure accurate recommendations.
+      </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <spacer [position]="'top'" [size]="'10px'" />
+      
+      <form [formGroup]="personalInfoForm" class="personal-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label class="input-text">Thy Name</mat-label>
+          <input matInput formControlName="name" placeholder="John Doe" type="text" required>
+          @if(personalInfoForm.get('name')?.hasError('required')) {
+            <mat-error>This field is required.</mat-error>
+          }
+          @if(personalInfoForm.get('name')?.hasError('pattern')) {
+            <mat-error>Not a valid name format.</mat-error>
+          }
+        </mat-form-field>
+        
+        <spacer [position]="'top'" [size]="'3px'" />
+        
+        <div class="spaced">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label class="input-text">Thy Birthday</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthdate" required>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label class="input-text">Thy Age</mat-label>
+            <input matInput formControlName="age" type="number" required>
+          </mat-form-field>
+        </div>
+        
+        <spacer [position]="'top'" [size]="'3px'" />
+        
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Thy Gender</mat-label>
+          <mat-select formControlName="gender">
+            @for (gender of genders; track gender) {
+              <mat-option [value]="gender">{{gender}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    @if (personalInfoForm.valid) {
+      <mat-card-actions class="personal-footer" @fadeIn>
+        <button mat-icon-button (click)="emitValue()">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    }
+</mat-card>

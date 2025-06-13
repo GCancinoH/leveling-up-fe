@@ -1,0 +1,107 @@
+@import '../../../../../../variables';
+
+.photos-card {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba($glow-blue, 0.2);
+    text-align: center;
+
+    // Card header styling
+    ::ng-deep .mat-mdc-card-header {
+        text-align: center;
+        padding: 32px 40px 16px 40px;
+    
+        .mat-mdc-card-title {
+            font-family: $leveling-up-font;
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+    
+        .mat-mdc-card-subtitle {
+            margin-top: 8px;
+            font-family: $leveling-up-font;
+            font-size: 13px;
+            font-style: italic;
+            text-align: justify;
+            color: white;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+    }
+
+    .preview-container {
+        margin-top: 1.2rem;
+        padding-left: 16px;
+        padding-right: 16px;
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .preview-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .delete-button {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: rgba(244, 67, 54, 0.9) !important;
+            color: white !important;
+            width: 28px !important;
+            height: 28px !important;
+            min-width: 28px !important;
+            border-radius: 50% !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 0 !important;
+        
+            &:hover {
+                background-color: rgba(244, 67, 54, 1) !important;
+                transform: scale(1.1);
+            }
+        
+            ::ng-deep .mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                line-height: 16px;
+                margin: 0 !important;
+            }
+        }
+    }
+    
+    // Card actions styling
+    ::ng-deep .mat-mdc-card-actions {
+        &.photos-footer {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 16px 40px 32px 40px;
+      
+            .icon {
+                color: white !important;
+            }
+        }
+    }
+}

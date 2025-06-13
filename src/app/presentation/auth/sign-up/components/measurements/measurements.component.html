@@ -1,0 +1,64 @@
+<mat-card class="measurements-card" @fadeIn>
+  <mat-card-header>
+      <mat-card-title>Body Measurements</mat-card-title>
+      <mat-card-subtitle>
+          Thy measurements are essential for tracking progress and calculating health metrics.
+      </mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+      <spacer [position]="'top'" [size]="'10px'" />
+      <div class="progress-content">
+        <h3>Progress: {{ progress() }}/{{ measurementPoints().length }}</h3>
+        <mat-progress-bar mode="determinate" [value]="getProgressPercentage()"></mat-progress-bar>
+      </div>
+      <spacer [position]="'top'" [size]="'40px'" />
+      <div class="body-content">
+        <img src="images/male_body.png" alt="Body Outline" class="background-image">
+        <svg viewBox="0 0 768 1152" class="overlay">
+          @for (point of measurementPoints(); track point.id) {
+            <circle
+              [attr.cx]="point.cx"
+              [attr.cy]="point.cy"
+              r="6"
+              class="point"
+              [class.point-filled]="point.isFilled"
+              [matTooltip]="point.name"
+              (click)="openMeasurementDialog(point.name)">
+            </circle>
+          }
+        </svg>
+      </div>
+  </mat-card-content>
+  @if (initialMeasurements.valid) {
+    <mat-card-actions class="personal-footer" @fadeIn>
+      <button mat-icon-button (click)="saveAllMeasurements()">
+        <mat-icon class="icon">arrow_forward</mat-icon>
+      </button>
+    </mat-card-actions>
+  }
+</mat-card>
+<!--<div class="container">
+  <div class="progress-content">
+    <h3>Progress: {{ progress() }}/{{ measurementPoints().length }}</h3>
+    <mat-progress-bar mode="determinate" [value]="getProgressPercentage()"></mat-progress-bar>
+  </div>
+  <spacer [position]="'top'" [size]="'40px'" />
+  <div class="body-content">
+    <img src="images/male_body.png" alt="Body Outline" class="background-image">
+    <svg viewBox="0 0 768 1152" class="overlay">
+      @for (point of measurementPoints(); track point.id) {
+        <circle
+          [attr.cx]="point.cx"
+          [attr.cy]="point.cy"
+          r="6"
+          class="point"
+          [class.point-filled]="point.isFilled"
+          [matTooltip]="point.name"
+          (click)="openMeasurementDialog(point.name)">
+        </circle>
+      }
+      
+    </svg>
+  </div>  
+</div>-->

@@ -1,0 +1,296 @@
+// Variables
+$solo-leveling-purple: #6a11cb;
+$solo-leveling-blue: #2575fc;
+$solo-leveling-dark-bg: #121212;
+$solo-leveling-card-bg: #1a1a1a;
+$solo-leveling-input-bg: #242424;
+$solo-leveling-gray: #444444;
+
+// Imports
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+// Note: Color palettes are generated from primary: #303F9F, secondary: #5E35B1, tertiary: #64B5F6
+$_palettes: (
+  primary: (
+    0: #000000,
+    10: #000d5f,
+    20: #112286,
+    25: #203091,
+    30: #2d3c9c,
+    35: #3a49a9,
+    40: #4755b6,
+    50: #606fd1,
+    60: #7a89ed,
+    70: #98a5ff,
+    80: #bbc3ff,
+    90: #dfe0ff,
+    95: #f0efff,
+    98: #fbf8ff,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+  secondary: (
+    0: #000000,
+    10: #24005b,
+    20: #3d0090,
+    25: #48189b,
+    30: #5429a7,
+    35: #6037b3,
+    40: #6c45c0,
+    50: #865fdb,
+    60: #a07af7,
+    70: #b99aff,
+    80: #d1bcff,
+    90: #eaddff,
+    95: #f6edff,
+    98: #fef7ff,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+  tertiary: (
+    0: #000000,
+    10: #001d32,
+    20: #003352,
+    25: #003f63,
+    30: #004b74,
+    35: #005786,
+    40: #006398,
+    50: #1a7dba,
+    60: #4197d6,
+    70: #61b2f3,
+    80: #94ccff,
+    90: #cde5ff,
+    95: #e7f2ff,
+    98: #f7f9ff,
+    99: #fcfcff,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #1b1b21,
+    20: #303037,
+    25: #3b3b42,
+    30: #46464d,
+    35: #525259,
+    40: #5e5e65,
+    50: #77767e,
+    60: #919098,
+    70: #acaab3,
+    80: #c7c5ce,
+    90: #e3e1ea,
+    95: #f2eff8,
+    98: #fbf8ff,
+    99: #fffbff,
+    100: #ffffff,
+    4: #0d0e14,
+    6: #121319,
+    12: #1f1f25,
+    17: #292930,
+    22: #34343b,
+    24: #38393f,
+    87: #dbd9e2,
+    92: #e9e7f0,
+    94: #efedf6,
+    96: #f5f2fb,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #1a1b26,
+    20: #2f303b,
+    25: #3a3b46,
+    30: #454652,
+    35: #51515e,
+    40: #5d5d6a,
+    50: #767683,
+    60: #8f8f9e,
+    70: #aaaab8,
+    80: #c6c5d4,
+    90: #e2e1f0,
+    95: #f0efff,
+    98: #fbf8ff,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+);
+
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes,  neutral-variant),
+  error: map.get($_palettes, error),
+);
+
+$primary-palette: map.merge(map.get($_palettes, primary), $_rest);
+$tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
+
+@function _high-contrast-value($light, $dark, $theme-type) {
+  @if ($theme-type == light) {
+    @return $light;
+  }
+  @if ($theme-type == dark) {
+    @return $dark;
+  }
+  @if ($theme-type == color-scheme) {
+    @return light-dark(#{$light}, #{$dark});
+  }
+  
+  @error 'Unknown theme-type #{$theme-type}. Expected light, dark, or color-scheme';
+}
+
+@mixin high-contrast-overrides($theme-type) {
+  @include mat.theme-overrides((
+    primary: _high-contrast-value(#091d82, #efeeff, $theme-type),
+    on-primary: _high-contrast-value(#ffffff, #000000, $theme-type),
+    primary-container: _high-contrast-value(#303f9f, #b6beff, $theme-type),
+    on-primary-container: _high-contrast-value(#ffffff, #000434, $theme-type),
+    inverse-primary: _high-contrast-value(#bbc3ff, #2f3e9e, $theme-type),
+    primary-fixed: _high-contrast-value(#303f9f, #dfe0ff, $theme-type),
+    primary-fixed-dim: _high-contrast-value(#142588, #bbc3ff, $theme-type),
+    on-primary-fixed: _high-contrast-value(#ffffff, #000000, $theme-type),
+    on-primary-fixed-variant: _high-contrast-value(#ffffff, #000744, $theme-type),
+    secondary: _high-contrast-value(#380085, #f5edff, $theme-type),
+    on-secondary: _high-contrast-value(#ffffff, #000000, $theme-type),
+    secondary-container: _high-contrast-value(#562ca9, #ceb7ff, $theme-type),
+    on-secondary-container: _high-contrast-value(#ffffff, #100032, $theme-type),
+    secondary-fixed: _high-contrast-value(#562ca9, #eaddff, $theme-type),
+    secondary-fixed-dim: _high-contrast-value(#3f0592, #d1bcff, $theme-type),
+    on-secondary-fixed: _high-contrast-value(#ffffff, #000000, $theme-type),
+    on-secondary-fixed-variant: _high-contrast-value(#ffffff, #170041, $theme-type),
+    tertiary: _high-contrast-value(#002f4b, #e6f1ff, $theme-type),
+    on-tertiary: _high-contrast-value(#ffffff, #000000, $theme-type),
+    tertiary-container: _high-contrast-value(#004d78, #8bc8ff, $theme-type),
+    on-tertiary-container: _high-contrast-value(#ffffff, #000c19, $theme-type),
+    tertiary-fixed: _high-contrast-value(#004d78, #cde5ff, $theme-type),
+    tertiary-fixed-dim: _high-contrast-value(#003655, #94ccff, $theme-type),
+    on-tertiary-fixed: _high-contrast-value(#ffffff, #000000, $theme-type),
+    on-tertiary-fixed-variant: _high-contrast-value(#ffffff, #001322, $theme-type),
+    background: _high-contrast-value(#fbf8ff, #121319, $theme-type),
+    on-background: _high-contrast-value(#1b1b21, #e3e1ea, $theme-type),
+    surface: _high-contrast-value(#fbf8ff, #121319, $theme-type),
+    surface-dim: _high-contrast-value(#b9b8c0, #121319, $theme-type),
+    surface-bright: _high-contrast-value(#fbf8ff, #504f57, $theme-type),
+    surface-container-lowest: _high-contrast-value(#ffffff, #000000, $theme-type),
+    surface-container: _high-contrast-value(#e3e1ea, #303037, $theme-type),
+    surface-container-high: _high-contrast-value(#d5d3dc, #3b3b42, $theme-type),
+    surface-container-highest: _high-contrast-value(#c7c5ce, #46464d, $theme-type),
+    on-surface: _high-contrast-value(#000000, #ffffff, $theme-type),
+    shadow: _high-contrast-value(#000000, #000000, $theme-type),
+    scrim: _high-contrast-value(#000000, #000000, $theme-type),
+    surface-tint: _high-contrast-value(#4755b6, #bbc3ff, $theme-type),
+    inverse-surface: _high-contrast-value(#303037, #e3e1ea, $theme-type),
+    inverse-on-surface: _high-contrast-value(#ffffff, #000000, $theme-type),
+    outline: _high-contrast-value(#2a2b37, #f0eefe, $theme-type),
+    outline-variant: _high-contrast-value(#474855, #c2c1d0, $theme-type),
+    error: _high-contrast-value(#600004, #ffece9, $theme-type),
+    on-error: _high-contrast-value(#ffffff, #000000, $theme-type),
+    error-container: _high-contrast-value(#98000a, #ffaea4, $theme-type),
+    on-error-container: _high-contrast-value(#ffffff, #220001, $theme-type),
+    surface-variant: _high-contrast-value(#e2e1f0, #454652, $theme-type),
+    on-surface-variant: _high-contrast-value(#000000, #ffffff, $theme-type),
+  ))
+}
+
+// Bottom Sheet Customized
+:root {
+  @include mat.bottom-sheet-overrides((
+    container-text-color: white,
+    container-background-color: $solo-leveling-dark-bg,
+    container-text-font: "Share Tech Mono"
+  ));
+
+  @include mat.form-field-overrides((
+    outlined-label-text-font: "Share Tech Mono",
+    outlined-input-text-color: white
+  ));
+}
+
+.mat-bottom-sheet-container {
+  width: 600px;
+}
+
+@media (max-width: 768px) {
+  .mat-bottom-sheet-container {
+    width: 90%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+}
+
+// Form Field
+// Custom styling for Angular Material components
+::ng-deep {
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: $solo-leveling-input-bg !important;
+      
+      &:hover .mat-mdc-form-field-focus-overlay {
+        opacity: 0.08;
+      }
+    }
+    
+    .mdc-line-ripple::before {
+      border-bottom-color: $solo-leveling-gray;
+    }
+    
+    .mdc-line-ripple::after {
+      border-bottom-color: $solo-leveling-purple;
+    }
+    
+    .mat-mdc-form-field-focus-overlay {
+      background-color: $solo-leveling-purple;
+    }
+    
+    .mdc-floating-label, input {
+      color: white !important;
+    }
+    
+    .mat-mdc-form-field-subscript-wrapper {
+      color: white;
+    }
+  }
+  
+  .mat-mdc-checkbox {
+    .mdc-checkbox__background {
+      background-color: transparent !important;
+      border-color: $solo-leveling-gray !important;
+    }
+    
+    .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background {
+      background-color: $solo-leveling-purple !important;
+      border-color: $solo-leveling-purple !important;
+      background-image: linear-gradient(135deg, $solo-leveling-purple 0%, $solo-leveling-blue 100%) !important;
+    }
+    
+    .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background {
+      background-color: $solo-leveling-purple !important;
+      border-color: $solo-leveling-purple !important;
+    }
+    
+    .mdc-form-field {
+      color: white;
+    }
+  }
+  
+  .mdc-checkbox__ripple {
+    background-color: rgba($solo-leveling-purple, 0.12) !important;
+  }
+}

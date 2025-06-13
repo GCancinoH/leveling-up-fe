@@ -1,0 +1,72 @@
+<mat-card class="account-card" @fadeIn>
+    <mat-card-header>
+        <mat-card-title>First, let's create thy account</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <spacer [position]="'top'" [size]="'30px'" />
+        <form [formGroup]="accountForm" class="account-form">
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Thy Email</mat-label>
+                <input matInput formControlName="email" placeholder="johndoe@gmail.com" type="email" autoFocusNext required>
+                @if(accountForm.get('email')?.hasError('required')) {
+                    <mat-error>Name Field is required.</mat-error>
+                }
+                @if(accountForm.get('email')?.hasError('email')) {
+                    <mat-error>Not a valid email format.</mat-error>
+                }
+            </mat-form-field>
+            <spacer [position]="'top'" [size]="'3px'" />
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Thy Password</mat-label>
+                <input matInput formControlName="password" placeholder="johndoe@gmail.com" type="password" required>
+                @if(accountForm.get('password')?.hasError('required')) {
+                    <mat-error>This field is required.</mat-error>
+                }
+                @if(accountForm.get('emailk')?.hasError('minLength')) {
+                    <mat-error>Password must have, at least, 6 characters.</mat-error>
+                }
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    @if (accountForm.valid) {
+      <mat-card-actions class="account-footer" @fadeIn>
+        <button mat-icon-button (click)="emitValue()">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    }
+</mat-card>
+<!--<div class="account-card" @fadeIn>
+    <form [formGroup]="accountForm" class="account-form">
+        <h3>First, let's create thy account</h3>
+        <spacer [position]="'top'" [size]="'40px'" />
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label class="input-text">Thy Email</mat-label>
+            <input matInput formControlName="email" placeholder="sungjinwoo@gmail.com" type="email" autoFocusNext required>
+            @if(accountForm.get('email')?.hasError('required')) {
+                <mat-error>Email field is required.</mat-error>
+            }
+            @if(accountForm.get('email')?.hasError('email')) {
+                <mat-error>Email format is invalid.</mat-error>
+            }
+        </mat-form-field>
+        <spacer [position]="'top'" [size]="'10px'" />
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label class="input-text">Thy Password</mat-label>
+            <input matInput formControlName="password" type="password" required>
+            @if(accountForm.get('password')?.hasError('required')) {
+                <mat-error>Password field is required.</mat-error>
+            }
+            @if(accountForm.get('password')?.hasError('minLength')) {
+                <mat-error>Password must be at least 6 characters long.</mat-error>
+            }
+        </mat-form-field>
+    </form>
+    @if (accountForm.valid) {
+        <div class="account-footer" @fadeIn>
+            <button mat-icon-button (click)="emitValue()">
+                <mat-icon class="icon">arrow_forward</mat-icon>
+            </button>
+        </div>
+    }
+</div>-->

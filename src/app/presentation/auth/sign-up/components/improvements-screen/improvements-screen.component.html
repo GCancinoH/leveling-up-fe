@@ -1,0 +1,29 @@
+<mat-card class="improvement-card" @fadeIn>
+    <mat-card-header>
+        <mat-card-title>Improvements</mat-card-title>
+        <mat-card-subtitle>
+            Choose the areas you'd lie to focus on improving. Your selections will help us create a personalized plan tailored to your specific goals. Select all that apply and start your journey with Leveling Up!
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <spacer [position]="'top'" [size]="'10px'" />  
+        <form [formGroup]="improvementForm" class="improvement-form">
+            <div class="checkbox-container">
+                @for (improvement of improvements; track improvement) {
+                    <mat-checkbox
+                        [value]="improvement"
+                        (change)="onCheckboxChange(improvement, $event.checked)">
+                        <span class="text">{{ improvement.replace('_', ' ').toLowerCase() | titlecase }}</span>
+                    </mat-checkbox>
+                }
+            </div>
+        </form>
+    </mat-card-content>
+    @if (this.improvementForm.get('improvements')?.value!.length > 0) {
+        <mat-card-actions class="improvement-footer" @fadeIn>
+            <button mat-icon-button (click)="emitValue()">
+                <mat-icon class="icon">arrow_forward</mat-icon>
+            </button>
+        </mat-card-actions>
+    }
+</mat-card>

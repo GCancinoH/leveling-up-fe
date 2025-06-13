@@ -1,0 +1,55 @@
+<mat-card class="physical-card" @fadeIn>
+    <mat-card-header>
+        <mat-card-title>Physical Attributes</mat-card-title>
+        <mat-card-subtitle>
+            Thy physical measurements are essential for tracking progress and calculating health metrics.
+        </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <spacer [position]="'top'" [size]="'10px'" />
+        <form [formGroup]="physicalAttributesForm" class="physical-form">
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Thy Weight</mat-label>
+                <input matInput formControlName="weight" type="number" required>
+                @if(physicalAttributesForm.get('weight')?.hasError('required')) {
+                    <mat-error>This field is required</mat-error>
+                }
+            </mat-form-field>
+            <spacer [position]="'top'" [size]="'3px'" />
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">Thy Height</mat-label>
+                <input matInput formControlName="height" type="number" required>
+                @if(physicalAttributesForm.get('height')?.hasError('required')) {
+                    <mat-error>This field is required</mat-error>
+                }
+            </mat-form-field>
+            <spacer [position]="'top'" [size]="'3px'" />
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">BMI</mat-label>
+                <input matInput formControlName="bmi" type="number" required>
+                <mat-hint>
+                    @let bmi = bmiValue();
+                    @if (bmi == 0) {
+                    } @else if (bmi < 18.5) {
+                        Underweight
+                    } @else if (bmi >= 18.5 && bmi < 25) {
+                        Normal Weight
+                    } @else if (bmi >= 25 && bmi < 30) {
+                        Overweight
+                    } @else {
+                        Obese
+                    }
+                </mat-hint>
+                  
+            </mat-form-field>               
+        </form>
+    </mat-card-content>
+    @if (physicalAttributesForm.valid) {
+      <mat-card-actions class="personal-footer" @fadeIn>
+        <button mat-icon-button (click)="emitValue()">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    }
+</mat-card>

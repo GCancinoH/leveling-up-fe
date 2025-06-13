@@ -1,0 +1,13 @@
+<div class="counter-card" @fadeIn >
+    <h1 class="system-alert">⚠️ SYSTEM NOTIFICATION</h1>
+    <p class="system-message">If you do not accept the terms of The System, your heart will stop in:</p>
+
+    <div class="countdown-container" [ngClass]="{'pulse': (countDown$ | async)! <= 3}">
+        <span class="countdown-number">{{ countDown$ | async }}</span>
+      </div>
+    <spacer [position]="'bottom'" [size]="'50px'" /> 
+    <div class="button-container">
+        <button class="decline-button" (click)="decline()">DECLINE</button>
+        <button class="accept-button" (click)="accept()">ACCEPT</button>
+    </div>
+</div>

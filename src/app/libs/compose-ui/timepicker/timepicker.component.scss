@@ -1,0 +1,17 @@
+:host {
+    display: block;
+    
+    mat-form-field {
+      width: 100%;
+      
+      input {
+        cursor: pointer;
+      }
+      
+      &.disabled {
+        input {
+          cursor: default;
+        }
+      }
+    }
+  }

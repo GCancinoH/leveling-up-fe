@@ -1,0 +1,57 @@
+<div class="sign-in-container">
+    <div class="sign-in-card">
+        <div class="sign-in-header">
+            <h1 class="title">LEVELING UP</h1>
+            <p class="subtitle">{{ 'sign-in.header.subtitle' | translate }}</p>
+            <div class="divider"></div>
+        </div>
+  
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="sign-in-form">
+            <!-- Email Field -->
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">{{ 'sign-in.form.email.label' | translate }}</mat-label>
+                <input matInput formControlName="email" [placeholder]="'sign-in.form.email.placeholder' | translate" type="email" required>
+                @if(signInForm.get('email')?.invalid) {
+                    <mat-error>{{ getEmailErrorMessage() }}</mat-error>
+                }
+            </mat-form-field>
+  
+            <!-- Password Field -->
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label class="input-text">{{ 'sign-in.form.password.label' | translate }}</mat-label>
+                <input matInput formControlName="password" [type]="hidePassword() ? 'password' : 'text'" required>
+                @if(signInForm.get('password')?.invalid) {
+                    <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+                }
+            </mat-form-field>
+  
+            <!-- Sign In Button -->
+            <button mat-flat-button type="submit" class="sign-in-button" [disabled]="isLoading()">
+                @if(!isLoading()) {
+                    <span>{{ 'sign-in.form.button' | translate }}</span>
+                } @else {
+                    <mat-spinner diameter="24"></mat-spinner>
+                }
+            </button>
+  
+            <!-- OR Divider -->
+            <div class="or-divider">
+                <div class="line"></div>
+                <span>{{ 'sign-in.google.divider' | translate }}</span>
+                <div class="line"></div>
+            </div>
+  
+            <!-- Google Sign In -->
+            <button mat-stroked-button type="button" class="google-button" (click)="signInWithGoogle()" [disabled]="isLoading">
+                <span>{{ 'sign-in.google.sign-btn' | translate }}</span>
+            </button>
+  
+            <!-- Sign Up Link -->
+            <div class="sign-up-link">
+                <span>{{ 'sign-in.create-account.description' | translate }}</span>
+                <a (click)="navigateToSignUp()">{{ 'sign-in.create-account.action' | translate }}</a>
+            </div>
+        </form>
+          <div class="decoration-bottom"></div>
+    </div>
+</div>

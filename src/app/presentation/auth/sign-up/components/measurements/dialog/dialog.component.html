@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Measurement: {{ data.label }}</h2>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Measurement (cm)</mat-label>
+        <input matInput type="number" [formControl]="measurementControl" placeholder="Enter measurement" step="0.1" min="0">
+        @if (measurementControl.invalid && measurementControl.touched) {
+            <mat-error>
+                @if (measurementControl.hasError('required')) {
+                    Measurement is required
+                } @else if (measurementControl.hasError('cmMeasurement')) {
+                    Please enter a valid measurement
+                }
+            </mat-error>
+        }
+    </mat-form-field>
+</div>
+<div mat-dialog-actions style="padding-top: 20px">
+    <button mat-button (click)="onCancel()" class="cancel-button">
+        Cancel
+    </button>
+    <span style="margin-left: 10px;"></span>
+    <button 
+        mat-raised-button 
+        [disabled]="measurementControl.invalid"
+        (click)="onSave()"
+        class="save-button"
+    >
+        Save
+    </button>
+</div>
+<!--<div class="dialog-container">
+    <h2 mat-dialog-title>{{ data.label }}</h2>
+    
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Measurement (cm)</mat-label>
+            <input matInput type="number" [formControl]="measurementControl" placeholder="Enter measurement" step="0.1" min="0">
+            @if (measurementControl.invalid && measurementControl.touched) {
+                <mat-error>
+                @if (measurementControl.hasError('required')) {
+                    Measurement is required
+                } @else if (measurementControl.hasError('cmMeasurement')) {
+                    Please enter a valid measurement
+                }
+                </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancel()" class="cancel-button">
+            Cancel
+        </button>
+        <button 
+            mat-raised-button 
+            [disabled]="measurementControl.invalid"
+            (click)="onSave()"
+            class="save-button"
+        >
+            Save
+        </button>
+    </div>
+</div>-->

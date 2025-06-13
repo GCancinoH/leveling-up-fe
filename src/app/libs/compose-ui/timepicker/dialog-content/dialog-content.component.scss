@@ -1,0 +1,99 @@
+.time-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    background-color: #212121;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    
+    .selected-time {
+        width: 100%;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 300;
+      
+        .time-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+            .hour, .minute {
+                cursor: pointer;
+                padding: 5px;
+                border-radius: 4px;
+                transition: background-color 0.2s;
+          
+                &:hover {
+                    background-color: rgba(255,255,255,0.1);
+                }
+            
+                &.active {
+                    color: #2575fc;
+                    font-weight: 500;
+                }
+            }
+        
+            .separator {
+                margin: 0 5px;
+            }
+        
+            .ampm-toggle {
+                margin-left: 10px;
+                font-size: 1rem;
+                padding: 5px 10px;
+                background-color: rgba(255,255,255,0.1);
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+          
+                &:hover {
+                    background-color: rgba(255,255,255,0.2);
+                }
+            }
+        }
+    }
+    
+    .clock-wrapper {
+        margin: 20px 0;
+        width: 300px;
+        height: 300px;
+    }
+    
+    .time-picker-actions {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 10px 0;
+      
+        button {
+            padding: 8px 16px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        
+            &.cancel-btn {
+                background-color: transparent;
+                color: #2575fc;
+          
+                &:hover {
+                    background-color: rgba(37, 117, 252, 0.1);
+                }
+            }
+        
+            &.confirm-btn {
+                background-color: #2575fc;
+                color: white;
+          
+                &:hover {
+                    background-color: darken(#2575fc, 10%);
+                }
+            }
+        }
+    }
+}

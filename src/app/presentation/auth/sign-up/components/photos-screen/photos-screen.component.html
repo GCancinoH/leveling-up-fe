@@ -1,0 +1,53 @@
+<mat-card class="photos-card" @fadeIn>
+    <mat-card-header>
+        <mat-card-title>Starting Point</mat-card-title>
+        <mat-card-subtitle>
+            Select three photos to mark the beginning of your journey. These images will serve as reference to track your progress over time and celebrate your achievements.
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <spacer [position]="'top'" [size]="'30px'" />
+        <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            multiple
+            hidden
+        />
+
+        <!-- Styled Label as Material Button -->
+        <label for="imageUpload" class="glow-button" style="cursor: pointer; display: inline-block; padding: 10px 16px; border-radius: 4px; border-radius: 10px">
+            Select Images
+        </label>
+        @if(imagePreviews().length > 0) {
+            <spacer [position]="'top'" [size]="'50px'" />
+            <div class="preview-container" @fadeIn>
+                <div class="image-grid">
+                    @for (img of imagePreviews(); track img; let i = $index) {
+                        <div class="image-wrapper">
+                            <img [src]="img" alt="Preview" class="preview-image" />
+                            <button 
+                                mat-icon-button 
+                                class="delete-button" 
+                                (click)="removeImage(i)"
+                                aria-label="Delete image">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+            @if(imagePreviews().length <= 3) {
+                <mat-card-actions class="photos-footer" @fadeIn>
+                    <button mat-icon-button (click)="emitValue()">
+                        <mat-icon class="icon">arrow_forward</mat-icon>
+                    </button>
+                </mat-card-actions>
+            } @else {
+                <p>Thou hast permission of upload just three pictures.</p>
+            }
+            
+        }
+    </mat-card-content>
+</mat-card>

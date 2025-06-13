@@ -1,0 +1,54 @@
+<mat-toolbar class="dashboard-toolbar" color="primary">
+    @if(!isDesktop()) {
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon class="white-icon">menu</mat-icon>
+        </button>
+    }
+    <span class="spacer"></span>
+    <span class="toolbar-title">Leveling Up</span>
+    <span class="spacer"></span>
+    <div class="toolbar-buttons">
+        <button mat-icon-button>
+            <mat-icon class="white-icon">notifications</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav #sidenav
+    class="dashboard-sidenav"
+    mode="side"
+    [opened]="isDesktop()">
+    <div class="nav-content">
+      <h3 class="nav-title">Menu</h3>
+        <button mat-button (click)="change(isDesktop())">Home</button>
+        <button mat-button routerLink="/quests">Quests</button>
+        <button mat-button routerLink="/progress">Progress</button>
+      </div>
+    </mat-sidenav>
+  
+  <mat-sidenav-content class="dashboard-content">
+    <div class="dashboard-body">
+      <router-outlet></router-outlet>
+      <button mat-fab class="fab-btn" [matMenuTriggerFor]="menu">
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <ng-template matMenuContent>
+          <h3 class="menu-title">{{ 'dashboard.fab-menu.title' | translate }}</h3>
+          <button mat-menu-item (click)="openSleepBottomSheet()">
+            <mat-icon>bed</mat-icon>
+            <span class="menu-item">{{ 'dashboard.fab-menu.sleep' | translate }}</span>
+          </button>
+          <button mat-menu-item (click)="openBloodPressureBottomSheet()">
+            <mat-icon class="material-symbols-outlined">blood_pressure</mat-icon>
+            <span class="menu-item">{{ 'dashboard.fab-menu.blood-pressure' | translate }}</span>
+          </button>
+          <button mat-menu-item (click)="openBodyCompositionBottomSheet()">
+            <mat-icon>monitor_weight</mat-icon>
+            <span class="menu-item">{{ 'dashboard.fab-menu.body-composition' | translate }}</span>
+          </button>
+        </ng-template>
+      </mat-menu>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

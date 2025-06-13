@@ -1,0 +1,58 @@
+@use '@angular/material' as mat;
+
+// Solo Leveling theme colors
+$solo-leveling-purple: #6a11cb;
+$solo-leveling-blue: #2575fc;
+$solo-leveling-dark-bg: #121212;
+$solo-leveling-card-bg: #1a1a1a;
+$solo-leveling-input-bg: #242424;
+$solo-leveling-gray: #444444;
+
+// Variables
+$background-color: #0d1117;
+$card-bg: #151b26;
+$border-radius: 12px;
+$glow-blue: #4285f4;
+$glow-purple: #a64bf4;
+$text-color: #e6e6e6;
+$error-color: #ff4545;
+
+// Mixins
+@mixin glow-effect($color, $intensity: 10px) {
+  box-shadow: 0 0 $intensity $color;
+}
+
+@mixin gradient-text {
+  background: linear-gradient(90deg, $glow-blue, $glow-purple);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba($glow-blue, 0.5);
+}
+
+// Mat-checkbox
+:root {
+  @include mat.checkbox-overrides((
+    disabled-label-color: orange,
+    label-text-color: red,
+  ));
+}
+
+// Global styles
+:host {
+  display: block;
+  height: 100%;
+  font-family: "Share Tech Mono", monospace;
+  color: $text-color;
+}
+
+.signup-container {
+  background-color: $solo-leveling-dark-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}

@@ -1,0 +1,68 @@
+<section class="bottom-sheet-container">
+    <div class="bottom-sheet-title">
+        <h2 class="title">{{ 'dashboard.bottom-sheets.body-composition.title' | translate }}</h2>
+        <span class="subtitle">{{ 'dashboard.bottom-sheets.body-composition.subtitle' | translate }} {{ today | date: 'MMMM d, yyyy' }}</span>
+    </div>
+    <form [formGroup]="bodyCompForm" (ngSubmit)="onSubmit()" class="bottom-sheet-form">
+        <!-- Weight Field -->
+         <div>
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label class="input-text">{{ 'dashboard.bottom-sheets.body-composition.form.weight' | translate }}</mat-label>
+                <input matInput formControlName="weight" placeholder="65.2" type="number" step="0.1" required>
+                @if(bodyCompForm.get('weight')?.hasError('required')) {
+                    <mat-error>This field is required</mat-error>
+                }
+            </mat-form-field>
+         </div>
+
+        <div class="spaced">
+            <!-- Fat Mass -->
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label class="input-text">{{ 'dashboard.bottom-sheets.body-composition.form.bodyFat' | translate }}</mat-label>
+                <input matInput formControlName="bodyFat" type="number" step="0.1" required>
+                @if(bodyCompForm.get('bodyFat')?.hasError('required')) {
+                    <mat-error>This is field is required</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Muscle Mass -->
+            <mat-form-field appearance="outline"  fullWidth>
+                <mat-label class="input-text">{{ 'dashboard.bottom-sheets.body-composition.form.muscleMass' | translate }}</mat-label>
+                <input matInput formControlName="muscleMass" type="number" required>
+                @if(bodyCompForm.get('muscleMass')?.invalid) {
+                    <mat-error>akslñdkñasdk</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="spaced">
+            <!-- Fat Mass -->
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label class="input-text">{{ 'dashboard.bottom-sheets.body-composition.form.visceralFat' | translate }}</mat-label>
+                <input matInput formControlName="visceralFat" type="number" required>
+                @if(bodyCompForm.get('visceralFat')?.invalid) {
+                    <mat-error>kasjdkjasd</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Muscle Mass -->
+            <mat-form-field appearance="outline"  fullWidth>
+                <mat-label class="input-text">{{ 'dashboard.bottom-sheets.body-composition.form.bodyAge' | translate }}</mat-label>
+                <input matInput formControlName="bodyAge" type="number" required>
+                @if(bodyCompForm.get('bodyAge')?.invalid) {
+                    <mat-error>akslñdkñasdk</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <button mat-flat-button type="submit" class="save-btn">
+            @if(!isLoading()) {
+                <span>{{ 'dashboard.bottom-sheets.body-composition.form.button' | translate }}</span>
+            } @else {
+                <div class="spinner-container">
+                    <mat-spinner diameter="24"></mat-spinner>
+                    <span style="margin-left: 16px">Saving Data...</span>
+                </div>                
+            }
+        </button>
+    </form>
+</section>

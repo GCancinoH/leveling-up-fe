@@ -1,0 +1,21 @@
+<mat-form-field [class.disabled]="disabled()" appearance="outline" fullWidth>
+    <mat-label>{{ placeholder() }}</mat-label>
+    <input
+      matInput
+      readonly
+      [attr.disabled]="disabled() ? '' : null"
+      [value]="displayValue()"
+      (click)="disabled() ? null : openDialog()"
+      placeholder="{{ placeholder() }}"
+    />
+    <button
+      matSuffix
+      mat-icon-button
+      [disabled]="disabled()"
+      (click)="openDialog()"
+      type="button"
+      aria-label="Select time"
+    >
+        <mat-icon>schedule</mat-icon>
+    </button>
+</mat-form-field>

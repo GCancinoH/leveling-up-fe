@@ -1,0 +1,57 @@
+// Variables
+$background-color: #0d1117;
+$card-bg: #151b26;
+$border-radius: 12px;
+$glow-blue: #4285f4;
+$glow-purple: #a64bf4;
+$text-color: #e6e6e6;
+$error-color: #ff4545;
+
+// Mixins
+@mixin gradient-text {
+    background: linear-gradient(90deg, $glow-blue, $glow-purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba($glow-blue, 0.5);
+}
+
+:host {
+    display: block;
+    font-family: "Share Tech Mono", monospace;
+    color: $text-color;
+}
+
+.welcome-card {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba($glow-blue, 0.2);
+    text-align: center;
+
+    .gradient-text {
+        @include gradient-text;
+    }
+
+    .system-message {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        color: darken($text-color, 15%);
+        
+        @media (max-width: 576px) {
+          font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-card {
+        padding: 30px 20px; // Reduce padding but keep some for inner spacing
+        width: calc(100% - 40px); // Account for the margin
+        max-width: 100%; // Allow it to be more flexible
+    }
+}

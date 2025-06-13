@@ -1,0 +1,76 @@
+<section class="bottom-sheet-container">
+    <div class="bottom-sheet-title">
+        <h2 class="title">{{ 'dashboard.bottom-sheets.body-composition.title' | translate }}</h2>
+        <span class="subtitle">{{ 'dashboard.bottom-sheets.body-composition.subtitle' | translate }} {{ today | date: 'MMMM d, yyyy' }}</span>
+    </div>
+    <form [formGroup]="sleepForm" (ngSubmit)="onSubmit()" class="bottom-sheet-form">
+        <!-- From & To -->
+        <div class="spaced">
+            <time-picker fullWidth
+                formControlName="from"
+                [format]="timeFormat()"
+                placeholder="Start Time"
+            />
+            <time-picker fullWidth
+                formControlName="to"
+                [format]="timeFormat()"
+                placeholder="End Time"
+            />
+        </div>
+
+        <!-- Sleep duration -->
+        <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Sleep Duration</mat-label>
+            <input matInput formControlName="totalSleep" [value]="totalSleepValue()">
+        </mat-form-field>
+
+        <fieldset style="margin-bottom: 32px;">
+            <legend>Sleep Stages</legend>
+            <!-- Deep -->
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label>Deep Sleep</mat-label>
+                <input matInput formControlName="deepSleep" required>
+            </mat-form-field>
+            <!-- Light -->
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label>Light Sleep</mat-label>
+                <input matInput formControlName="lightSleep" required>
+            </mat-form-field>
+            <!-- REM -->
+            <mat-form-field appearance="outline" fullWidth>
+                <mat-label>REM Sleep</mat-label>
+                <input matInput formControlName="remSleep" required>
+            </mat-form-field>
+        </fieldset>
+
+        <!-- Heart Rate -->
+        <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Average Heart Rate</mat-label>
+            <input matInput formControlName="heartRate" type="number" required>
+        </mat-form-field>
+
+        <!-- Blood Oxygen -->
+        <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Deep Sleep</mat-label>
+            <input matInput formControlName="deepSleep" type="number" max="100" required>
+        </mat-form-field>
+
+        <!-- Blood Oxygen -->
+        <mat-form-field appearance="outline" fullWidth>
+            <mat-label>Breathing Score</mat-label>
+            <input matInput formControlName="deepSleep" type="number" max="100" required>
+        </mat-form-field>
+
+
+        <button mat-flat-button type="submit" class="save-btn">
+            @if(!isLoading()) {
+                <span>{{ 'dashboard.bottom-sheets.body-composition.form.button' | translate }}</span>
+            } @else {
+                <div class="spinner-container">
+                    <mat-spinner diameter="24"></mat-spinner>
+                    <span style="margin-left: 16px">Saving Data...</span>
+                </div>                
+            }
+        </button>
+    </form>
+</section>
